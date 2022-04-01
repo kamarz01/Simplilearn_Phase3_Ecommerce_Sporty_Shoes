@@ -45,8 +45,10 @@ public class UserController {
 
     @PostMapping("/signup")
     public String Signup(User user, HttpSession session){
-        userService.addNewUser(user);
+        Users u = userService.addNewUser(user);
         session.setAttribute("user",user.getUsername());
+        session.setAttribute("userId",u.getId());
+        session.setAttribute("cartCount",0);
         return "redirect:/";
     }
 
