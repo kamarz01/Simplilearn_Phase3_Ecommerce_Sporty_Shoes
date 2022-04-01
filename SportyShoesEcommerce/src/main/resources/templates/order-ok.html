@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Sporty Shoes - Cart & Checkout</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/static/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+</head>
+<body class="bg-light">
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
+            </ul>
+            <div class="text-end" th:if="${session.user != null}">
+                <p th:text="'Hello, '+${session.user}" class="btn btn-outline-light me-2">...</p>
+                <p th:text="'Products in Cart: '+${session.cartCount}" class="btn btn-outline-light me-2">...</p><br>
+                <a href="/user/logout"><button type="button" class="btn btn-warning">Logout</button></a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <main>
+        <div class="py-5 text-center">
+            <h2>Order Submitted</h2>
+            <p class="lead">Your order has been submitted successfully.</p>
+        </div>
+
+    </main>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2022 Sporty Shoes</p>
+    </footer>
+</div>
+
+<script src="/static/assets/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

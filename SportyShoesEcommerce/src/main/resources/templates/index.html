@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Sporty Shoes - by Kamar Zaghlolu</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/static/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
+                <li><a href="/cart" class="nav-link px-2 text-white">Cart & Checkout</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown04">
+                        <li th:each="cat : ${cats}"><a class="dropdown-item" th:text="${cat.name}" th:href="'/category/'+${cat.id}">...</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="text-end" th:if="${session.user == null}">
+                <a href="/user/login"><button type="button" class="btn btn-outline-light me-2">Login</button></a>
+                <a href="/admin"><button type="button" class="btn btn-outline-light me-2">Admin</button></a>
+                <a href="/user/signup"><button type="button" class="btn btn-warning">Sign-up</button></a>
+            </div>
+            <div class="text-end" th:if="${session.user != null}">
+                <p th:text="'Hello, '+${session.user}" class="btn btn-outline-light me-2">...</p>
+                <p th:text="'Products in Cart: '+${session.cartCount}" class="btn btn-outline-light me-2">...</p><br>
+                <a href="/admin"><button type="button" class="btn btn-outline-light me-2">Admin</button></a>
+                <a href="/user/logout"><button type="button" class="btn btn-warning">Logout</button></a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">About Sporty Shoes</h1>
+                <p class="lead text-muted">As one of the leading local Entrepreneur business in the world, we attribute our reputation to the lasting customer relationships we’ve developed throughout the years. We believe that all of our customers deserve the highest level Quality, stayle, fasionable, looks, and we are committed to providing best sneakers and fashions.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div th:each="prod : ${products}" class="col">
+                    <div class="card shadow-sm">
+                        <img th:src="@{'/static/uploads/'+${prod.imagePath}}" class="rounded mx-auto d-block" alt="...">
+                        <div class="card-body">
+                            <p class="card-text" th:text="${prod.name}" style="font-weight: bold">...</p>
+                            <p class="card-text" th:text="${prod.desc}">...</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a th:href="'/cart/add?productId='+${prod.id}"><button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button></a>
+                                </div>
+                                <small class="text-muted" th:text="'Catgeory: '+${prod.getCategories().getName()}">...</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer class="text-muted py-5">
+    <div class="container">
+        <p class="float-end mb-1">
+            <a href="#">Back to top</a>
+        </p>
+        <p class="mb-1">Sporty Shoes is  developed by Kamar Zaghloul &copy; </p>
+    </div>
+</footer>
+<script src="/static/assets/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Add new category</h3>
+            </div>
+            <form method="POST" action="/admin/category">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="name">Category Name</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Enter category name" required>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Categories List</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th style="width: 10%">Id</th>
+                        <th style="width: 40%">Name</th>
+                        <th style="width: 10%">Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="cat : ${catList}">
+                        <tr>
+                            <td th:text="${cat.id}">...</td>
+                            <td th:text="${cat.name}">...</td>
+                            <td>
+                                <a class="btn btn-block btn-outline-danger" th:href="@{/admin/category/(id=${cat.id},action='delete')}">Delete</a>
+                            </td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+                <strong><h3 th:text="${param.error}" class="card-title text-danger">...</h3></strong>
+            </div>
+        </div>
+    </div>
+</div>

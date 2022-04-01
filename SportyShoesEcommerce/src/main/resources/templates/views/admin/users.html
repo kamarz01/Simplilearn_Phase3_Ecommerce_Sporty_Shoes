@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Search Users by Name</h3>
+            </div>
+            <form method="GET" action="/admin/user">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="search">User Name</label>
+                        <input type="text" class="form-control" name="action" value="search" hidden>
+                        <input type="text" class="form-control" name="search" id="search" placeholder="Enter user name" required>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Users List</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th style="width: 10%">Id</th>
+                        <th style="width: 40%">Name</th>
+                        <th style="width: 10%">Username</th>
+                        <th style="width: 20%">Type</th>
+                        <th style="width: 10%">Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="user : ${userList}">
+                        <tr>
+                            <td th:text="${user.id}">...</td>
+                            <td th:text="${user.name}">...</td>
+                            <td th:text="${user.username}">...</td>
+                            <td th:text="${user.userType}">...</td>
+                            <td>
+                                <a class="btn btn-block btn-outline-danger" th:href="@{/admin/user/(id=${user.id},action='delete')}">Delete</a>
+                            </td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

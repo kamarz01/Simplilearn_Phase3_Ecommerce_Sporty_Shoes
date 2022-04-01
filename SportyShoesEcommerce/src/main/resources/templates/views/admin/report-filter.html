@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Filtered Purchase Report</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th style="width: 10%">Id</th>
+                        <th style="width: 10%">First Name</th>
+                        <th style="width: 10%">Last Name</th>
+                        <th style="width: 10%">Email</th>
+                        <th style="width: 20%">Address</th>
+                        <th style="width: 10%">Total Price</th>
+                        <th style="width: 30%">Products</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="report : ${result}">
+                        <tr>
+                            <td th:text="${report.id}">...</td>
+                            <td th:text="${report.firstName}">...</td>
+                            <td th:text="${report.lastName}">...</td>
+                            <td th:text="${report.email}">...</td>
+                            <td th:text="${report.address}">...</td>
+                            <td th:text="${report.totalPrice}">...</td>
+                            <td>
+                                <div th:each="prod: ${report.products}" style="border-bottom: 1px solid black">
+                                    Product:<span th:text="${prod.name}"></span><br>
+                                    Price:<span th:text="${prod.price}"></span><br>
+                                    Category:<span th:text="${prod.getCategories().name}"></span><br>
+                                </div>
+                            </td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
